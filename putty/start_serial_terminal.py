@@ -64,18 +64,18 @@ def get_putty_command(com, baud_rate=115200):
     @Desc: Get the CMD command to start the PuTTY terminal  
     @Param: com; COM port for USB Serial Port  
     @Retval: CMD command to launch PuTTY  
-    """ 
+    """
     return PUTTY_EXE_PATH   \
-           + " -serial "    \
-           + str(com)\
-           + " -sercfg "  \
-           + str(baud_rate)
+        + " -serial "    \
+        + str(com)\
+        + " -sercfg "  \
+        + str(baud_rate)
 
 
 def main():
     # Call the functions to start the terminal...
     os.system(get_putty_command(get_com_number_for_putty(
-                                    get_usb_serial_com())))
+        get_usb_serial_com())))
 
 
 if __name__ == '__main__':
