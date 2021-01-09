@@ -28,6 +28,9 @@ def get_usb_serial_com():
                    + ")":
             com_list.append(port)
 
+    if not com_list:  # If list is empty
+         # Raise exception if USB Serial Port is not detected    
+        raise Exception("No USB Serial Port found. Please check the connection.")
     return com_list
 
 
@@ -48,9 +51,6 @@ def get_com_number_for_putty(com_list):
         com_no_list.append(com_list[index][3:len(com_list[index])])
     if com_no_list:
         return "COM" + str(max(com_no_list))
-
-    # Raise exception if USB Serial Port is not detected    
-    raise Exception("No USB Serial Port found. Please check the connection.")
 
 
 def get_putty_command(com, baud_rate=115200):
