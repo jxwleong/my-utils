@@ -3,7 +3,7 @@ import re
 import serial
 import serial.tools.list_ports
 
-# Host have putty path in envioment variable,
+# Host have putty path in environment variable,
 # thus can directory invoke by calling "putty.exe"
 # in CMD
 PUTTY_EXE_PATH = "putty.exe"
@@ -31,6 +31,7 @@ def get_usb_serial_com():
     if not com_list:  # If list is empty
          # Raise exception if USB Serial Port is not detected    
         raise Exception("No USB Serial Port found. Please check the connection.")
+    
     return com_list
 
 
