@@ -42,21 +42,15 @@ def get_com_number_for_putty(com_list):
     @Param: com_list; List from calling get_usb_serial_com()  
     @Retval: COM# to be used in command to launch PuTTY
     """
-    i = 0
-    com_list_len = len(com_list)
-    com_no = 0
+    com_no_list = []
 
-    # Go throught the list to find the largest COM #
-    while com_list_len != 0:
-        com_list_element_len = len(com_list[i])
-        com_list_element_no = int(com_list[i][3:com_list_element_len])
+    for index, com in enumerate(com_list):
+        com_no_list.append(com_list[index][3:len(com_list[index])])
+    if com_no_list:
+        return "COM" + str(max(com_no_list))
 
-        if com_list_element_no > com_no:
-            com_no = com_list_element_no
-        i += 1
-        com_list_len -= 1
-
-    return "COM" + str(com_no)
+    # Raise exception is USB Serial Port is not detected    
+    raise Exception("No USB Serial Port found. Please check the connection.")
 
 
 def get_putty_command(com, baud_rate=115200):
@@ -67,15 +61,15 @@ def get_putty_command(com, baud_rate=115200):
     """
     return PUTTY_EXE_PATH   \
         + " -serial "    \
-        + str(com)\
+        + str(com)  \
         + " -sercfg "  \
         + str(baud_rate)
 
 
 def main():
     # Call the functions to start the terminal...
-    os.system(get_putty_command(get_com_number_for_putty(
-        get_usb_serial_com())))
+    os.system(get_putty_command(com=get_com_number_for_putty(  
+        com_list=get_usb_serial_com())))
 
 
 if __name__ == '__main__':
