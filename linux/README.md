@@ -4,8 +4,8 @@
     -    To set proxy, ```chmod +x set_proxy.sh```
     -    To unset proxy, ```chmod +x unset_proxy.sh```
 2. Run the bash script.
-   -    To set proxy, ```./set_proxy.sh```
-   -    To unset proxy, ```./unset_proxy.sh```
+   -    To set proxy, ```source set_proxy.sh```
+   -    To unset proxy, ```source unset_proxy.sh```
 
 ### Example
 ```
